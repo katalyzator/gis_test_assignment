@@ -7,3 +7,4 @@ media
 htmlcov
 db.sqlite3
 .coverage
+.idea
