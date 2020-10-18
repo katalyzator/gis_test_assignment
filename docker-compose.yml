@@ -1,0 +1,37 @@
+version: "2.4"
+
+services:
+  django:
+    build:
+      context: .
+    restart: always
+    container_name: test_django
+    env_file:
+      .env
+    image: django
+    depends_on:
+      - postgres
+    environment:
+      - SECRET_KEY=notasecret
+      - DEBUG=true
+      - DJANGO_SETTINGS_MODULE=project.settings.base
+      - ALLOWED_HOSTS=*
+      - POSTGRES_DB=test_postgres
+      - POSTGRES_PASSWORD=test_postgres
+      - POSTGRES_USER=test_postgres
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+    ports:
+      - "5000:5000"
+  postgres:
+    restart: always
+    container_name: test_postgres
+    env_file:
+      .env
+    image: postgres:10.6
+    environment:
+      - POSTGRES_DB=test_postgres
+      - POSTGRES_PASSWORD=test_postgres
+      - POSTGRES_USER=test_postgres
+    ports:
+      - "5432:5432"

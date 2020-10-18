@@ -1,0 +1,29 @@
+version: "2.4"
+services:
+  app:
+    build:
+      context: .
+    depends_on:
+      - postgres
+    environment:
+      - SECRET_KEY=notasecret
+      - DEBUG=true
+      - DJANGO_SETTINGS_MODULE=project.settings.test
+      - ALLOWED_HOSTS=*
+      - POSTGRES_DB=test_postgres
+      - POSTGRES_PASSWORD=test_postgres
+      - POSTGRES_USER=test_postgres
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - STRIPE_SECRET_KEY=stripe_key
+    volumes:
+      - ./:/code
+    working_dir: /code
+    entrypoint: ""
+    command: /app/scripts/run_tests.sh
+  postgres:
+    image: postgres:10.6
+    environment:
+      - POSTGRES_DB=test_postgres
+      - POSTGRES_PASSWORD=test_postgres
+      - POSTGRES_USER=test_postgres
