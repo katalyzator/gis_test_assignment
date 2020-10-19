@@ -15,7 +15,8 @@ urlpatterns = [
     path('api/v1/', include(v1)),
     path('health', lambda request: HttpResponse(status=200)),
     path('docs/', include_docs_urls(title='Test API', description='', public=True), name='docs'),
-    path('api-auth/', include('rest_framework.urls'))
+    path('api-auth/', include('rest_framework.urls')),
+    path('rest-auth/', include('rest_auth.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -31,9 +31,8 @@ Declare environment variables. You can find this information in **ENVIRONMENT VA
 To declare environment variables just run following command:
 
 
-
 ```
-cp backend/.env.prod backend/.env
+cp .env.dev .env
 ```
 
 Start services  
@@ -41,7 +40,23 @@ Start services
 docker-compose up --build
 ```
 
-Server is up and running on port 8000
+Server is up and running on port 5000
+
+### Documentation
+
+After building go to through the link 
+
+http://127.0.0.1:5000/docs/
+
+And you can see documentations of project
+
+### Running tests with Docker
+
+
+```
+docker-compose -f docker-compose-tests.yml up --build
+```
+
 
 ### Running with manage.py
 
@@ -107,7 +122,7 @@ python manage.py migrate
 ### If you are using docker to start the server, then you need to execute these commands
 
 ```
-docker exec -it backend sh
+docker exec -it test_django sh
 ```
 
 inside docker terminal
